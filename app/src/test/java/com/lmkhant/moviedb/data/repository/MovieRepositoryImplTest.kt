@@ -38,7 +38,6 @@ class MovieRepositoryImplTest {
         val movie1 = Movie(
             adult = false,
             backdropPath = "/backdrop1.jpg",
-            genreIds = listOf(28, 12),
             id = 1,
             originalLanguage = "en",
             originalTitle = "Movie One",
@@ -58,7 +57,6 @@ class MovieRepositoryImplTest {
         val movie2 = Movie(
             adult = false,
             backdropPath = "/backdrop2.jpg",
-            genreIds = listOf(18, 27),
             id = 2,
             originalLanguage = "en",
             originalTitle = "Movie Two",
@@ -78,7 +76,6 @@ class MovieRepositoryImplTest {
         val movie3 = Movie(
             adult = false,
             backdropPath = "/backdrop3.jpg",
-            genreIds = listOf(35, 14),
             id = 3,
             originalLanguage = "en",
             originalTitle = "Movie Three",
