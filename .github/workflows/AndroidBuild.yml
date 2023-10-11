@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.0
+      - uses: actions/checkout@v4.1.0
 
       - name: Setup Java JDK
       - uses: actions/setup-java@v3.13.0
@@ -20,7 +20,7 @@ jobs:
           cache: 'gradle'
 
       - name: Gradle Build Action
-        run: ./gradlew build
+      - run: ./gradlew build
 
       - name: Upload a Build Artifact
       - uses: actions/upload-artifact@v3.1.3
