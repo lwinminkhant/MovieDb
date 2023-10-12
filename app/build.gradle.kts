@@ -15,12 +15,12 @@ android {
 
     val signingProperties = getProperties("signingConfigs.properties")
 
-    releaseSigning = signingConfigs.create("release") {
+    /*releaseSigning = signingConfigs.create("release") {
         storeFile = file(getProperty(signingProperties, "storeFile"))
         storePassword = getProperty(signingProperties, "keyAlias")
         keyAlias = getProperty(signingProperties, "storePassword")
         keyPassword = getProperty(signingProperties, "keyPassword")
-    }
+    }*/
 
 
 
