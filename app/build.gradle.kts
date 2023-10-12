@@ -88,7 +88,7 @@ fun getProperties(fileName: String): Properties {
     if (file.exists()) {
         properties.load(project.rootProject.file(fileName).reader())
     } else {
-        throw FileNotFoundException("$fileName doesn't exist")
+        project.logger.error("$fileName doesn't exist")
     }
     return properties
 }
