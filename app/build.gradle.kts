@@ -11,14 +11,18 @@ plugins {
 }
 
 android {
+    var releaseSigning = signingConfigs.getByName("debug")
+
     val signingProperties = getProperties("signingConfigs.properties")
 
-    val releaseSigning = signingConfigs.create("release") {
+    releaseSigning = signingConfigs.create("release") {
         storeFile = file(getProperty(signingProperties, "storeFile"))
         storePassword = getProperty(signingProperties, "keyAlias")
         keyAlias = getProperty(signingProperties, "storePassword")
         keyPassword = getProperty(signingProperties, "keyPassword")
     }
+
+
 
     lint {
         baseline = file("lint-baseline.xml")
@@ -83,7 +87,7 @@ fun getProperties(fileName: String): Properties {
     val file = rootProject.file(fileName)
     if (file.exists()) {
         properties.load(project.rootProject.file(fileName).reader())
-    }else{
+    } else {
         throw FileNotFoundException("$fileName doesn't exist")
     }
     return properties
