@@ -2,11 +2,12 @@ package com.lmkhant.moviedb.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.lmkhant.moviedb.domain.model.genre.Genre
 import com.lmkhant.moviedb.domain.model.movie.Movie
 
 
 @Database(
-    entities = [Movie::class],
+    entities = [Movie::class, Genre::class],
     version = 1,
     exportSchema = false
 )

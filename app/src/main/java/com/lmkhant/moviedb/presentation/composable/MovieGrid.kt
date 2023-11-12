@@ -36,19 +36,28 @@ fun MovieGrid(
             .fillMaxSize()
             .padding(vertical = 4.dp), contentAlignment = Alignment.TopStart
     ) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            content = {
-                items(movies.size) { index ->
-                    Box(modifier = Modifier.padding(4.dp), contentAlignment = Alignment.Center) {
-                        MovieCard(
-                            movie = movies[index],
-                            navigateToDetails = navigateToDetails,
-                            addToFavourite = {}
-                        )
+        if (movies.isEmpty()) {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(text = "No favourites yet!")
+            }
+        } else {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                content = {
+                    items(movies.size) { index ->
+                        Box(
+                            modifier = Modifier.padding(4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            MovieCard(
+                                movie = movies[index],
+                                navigateToDetails = navigateToDetails,
+                                addToFavourite = {}
+                            )
+                        }
                     }
-                }
-            })
+                })
+        }
     }
 }
 

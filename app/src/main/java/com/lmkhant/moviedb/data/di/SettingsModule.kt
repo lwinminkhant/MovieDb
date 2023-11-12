@@ -16,10 +16,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object SettingsModule {
 
-
-
-
-
     @Provides
     @Singleton
     fun providePreferenceSettingsService(@ApplicationContext context: Context): IUserPreferencesService {

@@ -33,6 +33,7 @@ import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import com.valentinilk.shimmer.shimmer
 import com.valentinilk.shimmer.unclippedBoundsInWindow
+import com.lmkhant.moviedb.mock.movie1
 
 @Composable
 fun UpComingMovieCard(
@@ -295,25 +296,8 @@ fun ErrorUpComingMovieCardPreview() {
 @Preview
 @Composable
 fun UpComingMovieCardPreview() {
-    val movie3 = Movie(
-        adult = false,
-        backdropPath = "/backdrop3.jpg",
-        id = 3,
-        originalLanguage = "en",
-        originalTitle = "Movie 3 This is the overview of Movie Three.",
-        overview = "This is the overview of Movie Three.",
-        popularity = 67.89,
-        posterPath = "/poster3.jpg",
-        releaseDate = "2023-09-10",
-        title = "Movie Three",
-        video = true,
-        voteAverage = 8.2,
-        voteCount = 1200,
-        favourite = false,
-        type = "upComing",
-        index = 1
-    )
-    UpComingMovieCard(movie = movie3, addToFavourite = {}, navigateToDetails = {})
+
+    UpComingMovieCard(movie = movie1, addToFavourite = {}, navigateToDetails = {})
 
 
 }

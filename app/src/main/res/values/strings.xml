@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">MovieDb</string>
 
     <!-- Components -->
-    <string name="search_bar_label">Search…</string>
+    <string name="search_bar_label">Search for more events &amp; more</string>
     <string name="movie_poster_content_description">Movie poster</string>
     <string name="back_button_content_description">Go back</string>
     <string name="user_score_user_text">User</string>
@@ -46,7 +46,7 @@
     <string name="dynamic_color">Dynamic Color</string>
     <string name="static_color">Static Color</string>
     <string name="about_screen_description">Discover the world of cinema at your fingertips with MovieDb, the ultimate movie companion app for Android. Whether you\'re a passionate cinephile or just looking for a convenient way to explore and track your favorite films, MovieDb has everything you need.</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">What are you looking for ?</string>
     <string name="settings">Settings</string>
     <string name="back">Back</string>
     <string name="favorite">Favorite</string>

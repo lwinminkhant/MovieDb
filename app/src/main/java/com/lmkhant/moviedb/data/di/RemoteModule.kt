@@ -1,6 +1,6 @@
 package com.lmkhant.moviedb.data.di
 
-import com.lmkhant.moviedb.data.network.NetworkApi
+import com.lmkhant.moviedb.data.network.MovieApi
 import com.lmkhant.moviedb.data.repository.MovieRepositoryImpl
 import com.lmkhant.moviedb.data.repository.datasource.MovieLocalDataSource
 import com.lmkhant.moviedb.data.repository.datasource.MovieRemoteDatasource
@@ -16,8 +16,8 @@ import javax.inject.Singleton
 object RemoteModule {
     @Provides
     @Singleton
-    fun provideRemoteDataSource(networkApi: NetworkApi): MovieRemoteDatasource {
-        return MovieRemoteDataSourceImpl(networkApi)
+    fun provideRemoteDataSource(movieApi: MovieApi): MovieRemoteDatasource {
+        return MovieRemoteDataSourceImpl(movieApi)
     }
     @Provides
     @Singleton

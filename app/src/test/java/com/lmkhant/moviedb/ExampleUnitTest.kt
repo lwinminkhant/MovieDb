@@ -9,39 +9,43 @@ import org.junit.Test
  */
 class ExampleUnitTest {
     @Test
-    fun printApiKey(){
+    fun printApiKey() {
         println("Key: ${BuildConfig.API_KEY}")
     }
+
     @Test
     fun addition_isCorrect() {
-        println(generatePrimaryKey("Popular",0))
-        println(generatePrimaryKey("Popular",1))
-        println(generatePrimaryKey("Popular",2))
-        println(generatePrimaryKey("UpComing",0))
-        println(generatePrimaryKey("UpComing",1))
-        println(generatePrimaryKey("UpComing",2))
+        println(generatePrimaryKey("Popular", 0))
+        println(generatePrimaryKey("Popular", 1))
+        println(generatePrimaryKey("Popular", 2))
+        println(generatePrimaryKey("UpComing", 0))
+        println(generatePrimaryKey("UpComing", 1))
+        println(generatePrimaryKey("UpComing", 2))
     }
+
     private fun generatePrimaryKey(source: String, number: Int): Int {
         val sourceHash = source.hashCode()
         return sourceHash xor number
     }
+
     @Test
-    fun testNow(){
+    fun testNow() {
         val people = listOf(Person("aung", 13), Person("Shi", 33))
         var newPeople = listOf<Person>()
-        newPeople = people.map {person ->
+        newPeople = people.map { person ->
             person.copy(name = "Mr. ${person.name}")
         }
         println(newPeople)
     }
+
     data class Person(val name: String, val age: Int)
 
     @Test
-    fun combineTwoList(){
-        val listOld = listOf(Person("a",1), Person("b",1))
-        val listNew = listOf(Person("newa",3), Person("newb",3))
+    fun combineTwoList() {
+        val listOld = listOf(Person("a", 1), Person("b", 1))
+        val listNew = listOf(Person("newa", 3), Person("newb", 3))
 
-        val ggp = listOld.zip(listNew){ a, b->
+        val ggp = listOld.zip(listNew) { a, b ->
             Person(a.name, b.age)
         }
 
@@ -69,9 +73,25 @@ class ExampleUnitTest {
 
         return formatted.toString()
     }
+
     @Test
     fun RunThis(): Unit {
         print(formatExpression("9-5/(8-3)*2+6"))
+    }
+
+    data class IdName(val id: Int, val name: String)
+
+    @Test
+    fun MapTest() {
+        val ids = listOf(1, 2)
+        val idList = listOf(IdName(1, "One"), IdName(2, "Two"))
+
+        println(ids.map { id ->
+            idList.find { it.id == id }?.name ?: "Unknown"
+        })
+
+        val numbers = listOf("one", "two", "three")
+
     }
 
 }

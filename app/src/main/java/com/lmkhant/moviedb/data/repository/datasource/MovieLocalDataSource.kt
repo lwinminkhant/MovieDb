@@ -1,5 +1,7 @@
 package com.lmkhant.moviedb.data.repository.datasource
 
+import com.lmkhant.moviedb.domain.model.credits.Credit
+import com.lmkhant.moviedb.domain.model.genre.Genre
 import com.lmkhant.moviedb.domain.model.movie.Movie
 import kotlinx.coroutines.flow.Flow
 
@@ -17,4 +19,7 @@ interface MovieLocalDataSource {
     suspend fun saveMovie(movie: Movie)
     suspend fun clearAll()
     suspend fun updateMovie(movie: Movie)
+
+    suspend fun saveGenres(genres: List<Genre>)
+    suspend fun getGenres(): Flow<List<Genre>>
 }

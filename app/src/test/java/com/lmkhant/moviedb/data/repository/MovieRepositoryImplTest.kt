@@ -2,7 +2,7 @@ package com.lmkhant.moviedb.data.repository
 
 import com.google.gson.Gson
 import com.lmkhant.moviedb.RetrofitHelper
-import com.lmkhant.moviedb.data.network.NetworkApi
+import com.lmkhant.moviedb.data.network.MovieApi
 import com.lmkhant.moviedb.data.repository.datasource.MovieRemoteDatasource
 import com.lmkhant.moviedb.data.repository.datasourceimpl.MovieRemoteDataSourceImpl
 import com.lmkhant.moviedb.domain.model.movie.Movie
@@ -17,7 +17,7 @@ import java.net.HttpURLConnection
 
 class MovieRepositoryImplTest {
     private lateinit var repository: MovieRemoteDatasource
-    private lateinit var networkApi: NetworkApi
+    private lateinit var networkApi: MovieApi
     private lateinit var mockWebServer: MockWebServer
     @Before
     fun setUp() {
@@ -38,6 +38,7 @@ class MovieRepositoryImplTest {
         val movie1 = Movie(
             adult = false,
             backdropPath = "/backdrop1.jpg",
+            genreIds = listOf(28),
             id = 1,
             originalLanguage = "en",
             originalTitle = "Movie One",
@@ -57,6 +58,7 @@ class MovieRepositoryImplTest {
         val movie2 = Movie(
             adult = false,
             backdropPath = "/backdrop2.jpg",
+            genreIds = listOf(28),
             id = 2,
             originalLanguage = "en",
             originalTitle = "Movie Two",
@@ -76,6 +78,7 @@ class MovieRepositoryImplTest {
         val movie3 = Movie(
             adult = false,
             backdropPath = "/backdrop3.jpg",
+            genreIds = listOf(28),
             id = 3,
             originalLanguage = "en",
             originalTitle = "Movie Three",

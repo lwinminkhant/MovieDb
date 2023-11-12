@@ -9,7 +9,8 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
-import com.lmkhant.moviedb.data.network.NetworkApi
+import androidx.core.view.WindowCompat
+import com.lmkhant.moviedb.data.network.MovieApi
 import com.lmkhant.moviedb.presentation.MoviesApp
 import com.lmkhant.moviedb.presentation.screen.more.settings.SettingScreenState
 import com.lmkhant.moviedb.presentation.screen.more.settings.SettingScreenViewModel
@@ -22,7 +23,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @Inject
-    lateinit var apiInterface: NetworkApi
+    lateinit var apiInterface: MovieApi
     private val settingScreenViewModel: SettingScreenViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -31,6 +32,8 @@ class MainActivity : ComponentActivity() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
 
         setContent {
             val themeState = settingScreenViewModel.settingScreenState

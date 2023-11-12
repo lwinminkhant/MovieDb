@@ -8,6 +8,7 @@ val movie1 = Movie(
     id = 3,
     originalLanguage = "en",
     originalTitle = "Movie 3",
+    genreIds = listOf(23,25),
     overview = "This is the overview of Movie Three.",
     popularity = 67.89,
     posterPath = "https://marketplace.canva.com/EAE-HtAkK7o/1/0/1131w/canva-dark-grey-simple-samurai-warrior-action-movies-promotion-poster-0SiR6y7aypo.jpg",

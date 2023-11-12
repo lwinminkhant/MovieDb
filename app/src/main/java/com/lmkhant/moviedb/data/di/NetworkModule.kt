@@ -1,13 +1,16 @@
 package com.lmkhant.moviedb.data.di
 
+import android.content.Context
 import com.lmkhant.moviedb.BuildConfig
 import com.lmkhant.moviedb.data.network.ApiKeyInterceptor
-import com.lmkhant.moviedb.data.network.NetworkApi
+import com.lmkhant.moviedb.data.network.MovieApi
+import com.lmkhant.moviedb.data.network.NetworkConnectionInterceptor
 import com.lmkhant.moviedb.utils.Utils
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -19,9 +22,10 @@ import javax.inject.Singleton
 object NetworkModule {
     @Singleton
     @Provides
-    fun provideHttpClient(): OkHttpClient =
+    fun provideHttpClient(@ApplicationContext context: Context): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(ApiKeyInterceptor(BuildConfig.API_KEY))
+            .addInterceptor(NetworkConnectionInterceptor(context))
             .build()
 
     @Singleton
@@ -34,5 +38,5 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideNetworkApi(retrofit: Retrofit): NetworkApi = retrofit.create(NetworkApi::class.java)
+    fun provideNetworkApi(retrofit: Retrofit): MovieApi = retrofit.create(MovieApi::class.java)
 }

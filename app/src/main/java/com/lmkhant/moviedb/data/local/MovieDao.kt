@@ -5,6 +5,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.lmkhant.moviedb.domain.model.credits.Credit
+import com.lmkhant.moviedb.domain.model.genre.Genre
 import com.lmkhant.moviedb.domain.model.movie.Movie
 import kotlinx.coroutines.flow.Flow
 
@@ -42,4 +44,10 @@ interface MovieDao {
 
         @Update
         suspend fun updateMovies(movieList: List<Movie>)
+
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        fun saveGenres(genres: List<Genre>)
+        @Query("SELECT * FROM genres")
+        fun getGenre(): Flow<List<Genre>>
+
 }

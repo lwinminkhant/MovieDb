@@ -2,6 +2,8 @@ package com.lmkhant.moviedb.data.repository.datasourceimpl
 
 import com.lmkhant.moviedb.data.local.MovieDao
 import com.lmkhant.moviedb.data.repository.datasource.MovieLocalDataSource
+import com.lmkhant.moviedb.domain.model.credits.Credit
+import com.lmkhant.moviedb.domain.model.genre.Genre
 import com.lmkhant.moviedb.domain.model.movie.Movie
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,5 +48,17 @@ class MovieLocalDataSourceImpl(
         CoroutineScope(Dispatchers.IO).launch {
             movieDao.updateMovie(movie)
         }
+    }
+
+    override suspend fun saveGenres(genres: List<Genre>) {
+        CoroutineScope(Dispatchers.IO).launch {
+            movieDao.saveGenres(genres)
+        }
+
+    }
+
+
+    override suspend fun getGenres(): Flow<List<Genre>> {
+        return movieDao.getGenre()
     }
 }

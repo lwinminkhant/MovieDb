@@ -40,6 +40,10 @@ fun getBitMap(context: Context, pictureUri: String): Bitmap =
         ImageDecoder.decodeBitmap(source)
     }
 
+fun generatePrimaryKey(source: String, number: Int): Int {
+    val sourceHash = source.hashCode()
+    return sourceHash xor number
+}
 fun Modifier.shimmerEffect(): Modifier = composed {
     var size by remember {
         mutableStateOf(IntSize.Zero)

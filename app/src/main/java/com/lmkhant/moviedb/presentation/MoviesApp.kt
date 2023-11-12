@@ -37,6 +37,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.lmkhant.moviedb.R
+import com.lmkhant.moviedb.domain.model.genre.Genre
 import com.lmkhant.moviedb.presentation.screen.favorite.FavouriteScreen
 import com.lmkhant.moviedb.presentation.screen.more.AboutScreen
 import com.lmkhant.moviedb.presentation.screen.more.MoreScreen
@@ -48,6 +49,9 @@ import com.lmkhant.moviedb.presentation.screen.moviedetails.MovieDetailsViewMode
 import com.lmkhant.moviedb.presentation.screen.moviedetails.RenderMovie
 import com.lmkhant.moviedb.ui.navigation.BottomBar
 import com.lmkhant.moviedb.ui.navigation.Destinations
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 
 @RequiresApi(Build.VERSION_CODES.P)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
@@ -76,7 +80,6 @@ fun MoviesApp(modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier
             .fillMaxSize(),
-        containerColor = Color.Black,
         bottomBar = { BottomBar(navController, navScreens) },
         topBar = {
             when (navBackStackEntry?.destination?.route) {
@@ -118,7 +121,7 @@ fun MoviesApp(modifier: Modifier = Modifier) {
                 }
 
                 Destinations.MoviesDetails.route -> {
-                    TopAppBar(title = { Text(text = stringResource(R.string.movie_detail)) },
+                    /*TopAppBar(title = { Text(text = stringResource(R.string.movie_detail)) },
                         navigationIcon = {
                             IconButton(onClick = { navController.navigateUp() }) {
                                 Icon(
@@ -126,7 +129,7 @@ fun MoviesApp(modifier: Modifier = Modifier) {
                                     contentDescription = stringResource(id = R.string.back)
                                 )
                             }
-                        })
+                        })*/
                 }
             }
         }
@@ -199,13 +202,25 @@ fun MoviesApp(modifier: Modifier = Modifier) {
                             initialValue = MovieUiState.Loading
                         ).value
 
+                    val genres = movieDetailsViewModel.genres.collectAsStateWithLifecycle(
+                        initialValue = GenreUiState.Loading
+                    ).value
+
+
+
+                    val movieCreditsUiState = movieDetailsViewModel.movieCreditsUiState
                     movieIdArg?.let {
                         LaunchedEffect(movieIdArg) {
                             movieDetailsViewModel.setMovieDetail(movieIdArg)
 
                         }
                         RenderMovie(
+                            navController = navController,
                             movieUiState = movieDetails,
+                            genres = genres,
+                            movieCreditsUiState = movieCreditsUiState.collectAsStateWithLifecycle(
+                                initialValue = MovieCreditsUiState.Loading
+                            ).value,
                             addToFavourite = { movie ->
                                 movieDetailsViewModel.updateMovie(movie.copy(favourite = !movie.favourite))
                             }
@@ -221,9 +236,6 @@ fun MoviesApp(modifier: Modifier = Modifier) {
                         ).value
                     FavouriteScreen(Modifier, state) { movieId: Int ->
                         navController.navigate("MovieDetailsScreen/$movieId") {
-                            /*popUpTo(Destinations.Favorite.route) {
-                                saveState = true
-                            }*/
                             launchSingleTop = true
                             restoreState = true
                         }
